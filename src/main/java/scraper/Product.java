@@ -7,15 +7,7 @@ public class Product {
     private String tagName ;
     private String tagPrice;
     private String tagImage;
-
-    //str.substring(indexStart[, indexEnd])
-
-
-
-
-    public Product() {
-
-    }
+    private static String homePage;
 
 
     public String getPageProduct() {
@@ -62,4 +54,5 @@ public class Product {
         this.tagImage = tagImage;
         return tagImage;
     }
+
 }

@@ -11,14 +11,45 @@ public class Main {
 
     public static void main(String[] args) throws NumberFormatException {
 
-        Thread crawl1 = new Thread( new Crawler() );
-        Thread crawl2 = new Thread( new Crawler() );
+        Crawler crawl1 = new Crawler("https://www.magazineluiza.com.br/complemento-alimentar-adulto/mercado/s/me/cmaa/");
+        Thread t1 = new Thread(crawl1);
 
-        crawl1.start();
-        crawl2.start();
+        Crawler crawl2 = new Crawler("https://www.magazineluiza.com.br/eletrodomesticos/l/ed/");
+//        crawl2.setHomePage(  );
+        Thread t2 = new Thread(crawl2);
+
+        Crawler crawl3 = new Crawler("https://www.magazineluiza.com.br/decoracao/l/de/");
+//        crawl3.setHomePage( "https://www.magazineluiza.com.br/decoracao/l/de/" );
+        Thread t3 = new Thread(crawl3);
+
+        Crawler crawl4 = new Crawler("https://www.magazineluiza.com.br/ar-e-ventilacao/l/ar/");
+//        crawl4.setHomePage( "https://www.magazineluiza.com.br/ar-e-ventilacao/l/ar/" );
+        Thread t4 = new Thread(crawl4);
+
+        Crawler crawl5 = new Crawler("https://www.magazineluiza.com.br/games/l/ga/" );
+//        crawl5.setHomePage( "https://www.magazineluiza.com.br/games/l/ga/" );
+        Thread t5 = new Thread(crawl5);
+
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+
 //
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
+            t5.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
+        System.out.println("Finalizado com a lista de pesquisas de: " + Crawler.pesquisas.size()+ " produtos: "+ Crawler.produtos.size() + " e links visitados: " + Crawler.linksConhecidos.size() );
 
     }
 }
